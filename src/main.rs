@@ -1,17 +1,15 @@
+use std::io;
+
 fn main() {
+    println!("Guess the number!");
+    println!("Please input your guess.");
+    
+    let mut guess = String::new();
 
-    // let mut t = ("hello",true, 3);
+    io::stdin()
+        .read_line(&mut guess)
+        .expect("Failed to read line");
 
-    // let mut l = [1,2,3];
-    // for item in l {
-    //     println!("> {}", item)
-    // }
-
-    let vec = vec![1,2,4];
-    for data in vec.iter() {
-        if *data == 2 {
-            println!("/ {}", data)
-        }
-    }
+    println!("You guessed {guess}");
 
 }
