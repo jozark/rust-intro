@@ -2,9 +2,18 @@ use rand::Rng;
 use std::{cmp::Ordering, io};
 
 fn main() {
-    fibonnaci(3);
-    fibonnaci(5);
-    fibonnaci(10);
+    next_light("green");
+}
+
+fn next_light(current: &str) -> String {
+    let result = match current {
+        "green" => "yellow".to_string(),
+        "yellow" => "red".to_string(),
+        "red" => "green".to_string(),
+        _ => "please enter a valid color".to_string(),
+    };
+    println!("{}", result);
+    return result;
 }
 
 fn fibonnaci(num: u32) -> u32 {
