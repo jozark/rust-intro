@@ -5,7 +5,6 @@ fn main() {
     fibonnaci(3);
     fibonnaci(5);
     fibonnaci(10);
-    // fibonnaci(10);
 }
 
 fn fibonnaci(num: u32) -> u32 {
@@ -18,10 +17,18 @@ fn fibonnaci(num: u32) -> u32 {
     let mut second: u32 = 1;
     let mut result: u32 = 0;
 
-    for _number in 2..num {
+    // for _number in 2..num {
+        // result = first + second;
+        // first = second;
+        // second = result;
+    // }
+    let mut i = 0;
+
+    while i < (num - 2) {
         result = first + second;
         first = second;
         second = result;
+        i = i + 1;
     }
 
     println!("{}", result);
