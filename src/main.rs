@@ -2,7 +2,30 @@ use rand::Rng;
 use std::{cmp::Ordering, io};
 
 fn main() {
-    
+    fibonnaci(3);
+    fibonnaci(5);
+    fibonnaci(10);
+    // fibonnaci(10);
+}
+
+fn fibonnaci(num: u32) -> u32 {
+    // 0 1 1 2 3 5
+    if num == 1 {
+        return 0;
+    }
+
+    let mut first: u32 = 0;
+    let mut second: u32 = 1;
+    let mut result: u32 = 0;
+
+    for _number in 2..num {
+        result = first + second;
+        first = second;
+        second = result;
+    }
+
+    println!("{}", result);
+    return result;
 }
 
 fn control() {
@@ -46,10 +69,6 @@ fn control() {
     }
 
     println!("LIFTOFF!!!");
-    
-    
-    
-    
 }
 
 fn guessing_game() {
