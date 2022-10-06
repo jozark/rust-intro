@@ -2,10 +2,13 @@ use rand::Rng;
 use std::{cmp::Ordering, io};
 
 fn main() {
+    types();
+}
+
+fn guessing_game() {
     println!("Guess the number!");
     let secret_number = rand::thread_rng().gen_range(0..=100);
 
-    
     loop {
         println!("Please input your guess.");
 
@@ -28,4 +31,20 @@ fn main() {
             }
         }
     }
+}
+
+fn types() {
+    // shadowing variables -> type change allowed
+    let x = 5;
+    println!("x is {}", x);
+    let x = 10;
+    println!("x is {}", x);
+    let x = "test";
+    println!("x is {}", x);
+
+    let tup: (i32, f64, &str) = (500, 5.2, "test");
+    let (x, y, z) = tup;
+    println!("y is {}", tup.2);
+
+    let arr = [1, 2, 3];
 }
