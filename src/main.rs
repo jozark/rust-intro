@@ -1,8 +1,19 @@
 use rand::Rng;
-use std::{cmp::Ordering, io};
+use std::{cmp::Ordering, io, vec};
 
 fn main() {
-    next_light("green");
+    get_multiples(5, 8);
+}
+
+// Goal: Create a function with two arguments that will return an array of the first n multiples of x.
+fn get_multiples(x: u32, n: u32) -> Vec<u32> {
+    let mut vector = Vec::new();
+
+    for i in 1..=n {
+        vector.push(i as u32 * x);
+    }
+
+    vector
 }
 
 fn next_light(current: &str) -> String {
