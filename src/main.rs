@@ -2,16 +2,24 @@ use rand::Rng;
 use std::{cmp::Ordering, io, vec};
 
 fn main() {
-    let array = [12.0, 5.0, 3.2];
-    let avg = find_average(&array);
-    println!("{}", avg);
+    let result = boolean_to_string(true);
+    println!("{}", result);
 }
+
+//Goal: return string of boolean
+fn boolean_to_string(b: bool) -> String {
+    match b {
+        true => String::from("true"),
+        false => String::from("false"),
+    }
+}
+
 
 // Goal: Create fn that return avg
 fn find_average(slice: &[f64]) -> f64 {
     let mut sum = 0.0;
     let length = slice.len() as f64;
-    
+
     for i in slice.iter() {
         sum += i;
     }
