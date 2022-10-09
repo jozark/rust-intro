@@ -2,7 +2,21 @@ use rand::Rng;
 use std::{cmp::Ordering, io, vec};
 
 fn main() {
-    get_multiples(5, 8);
+    let array = [12.0, 5.0, 3.2];
+    let avg = find_average(&array);
+    println!("{}", avg);
+}
+
+// Goal: Create fn that return avg
+fn find_average(slice: &[f64]) -> f64 {
+    let mut sum = 0.0;
+    let length = slice.len() as f64;
+    
+    for i in slice.iter() {
+        sum += i;
+    }
+
+    sum/length
 }
 
 // Goal: Create a function with two arguments that will return an array of the first n multiples of x.
