@@ -1,11 +1,31 @@
 use rand::Rng;
 use std::{cmp::Ordering, io::{self, Read}, vec};
 
-fn main() {
-    let s1 = String::from("hello world");
-    let word = first_word_index(&s1);
-    println!("{}", word);
+#[derive(Debug)]
+struct Rectangle {
+    width: u32,
+    height: u32,
 }
+
+fn main() {
+    let scale = 2;
+	let rec = Rectangle {
+		width: dbg!(scale * 30),
+		height: 30,
+	};
+
+    let area = calc_area(&rec);
+    println!("area is {}", area);
+	println!("{:#?}", rec); 
+	dbg!(&rec);    
+	// this only works because we attributed the debug trait
+}
+
+fn calc_area(r: &Rectangle) -> u32 {
+    r.width * r.height
+}
+
+
 
 // Goal: find end index of the first word 
 fn first_word_index(s: &String) -> &str {
@@ -19,7 +39,6 @@ fn first_word_index(s: &String) -> &str {
 
     &s[..]
 }
-
 
 // Goal: return string of boolean
 fn boolean_to_string(b: bool) -> String {
