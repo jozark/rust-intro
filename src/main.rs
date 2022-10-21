@@ -1,5 +1,9 @@
 use rand::Rng;
-use std::{cmp::Ordering, io::{self, Read}, vec};
+use std::{
+    cmp::Ordering,
+    io::{self, Read},
+    vec,
+};
 
 #[derive(Debug)]
 struct Rectangle {
@@ -11,31 +15,28 @@ impl Rectangle {
     fn calc_area(&self) -> u32 {
         self.width * self.height
     }
+
+    fn double_width(&mut self) {
+        self.width = self.width * 2;
+    }
 }
 
 fn main() {
     let scale = 2;
-	let rec = Rectangle {
-		width: dbg!(scale * 30),
-		height: 30,
-	};
-
-    let area = rec.calc_area();
-    println!("area is {}", area);
-	println!("{:#?}", rec); 
-	dbg!(&rec);    
-	// this only works because we attributed the debug trait
+    let mut rec = Rectangle {
+        width: scale * 30,
+        height: 30,
+    };
+    println!("before {}", rec.width);
+    rec.double_width();
+    println!("after {}", rec.width);
 }
 
-
-
-
-
-// Goal: find end index of the first word 
+// Goal: find end index of the first word
 fn first_word_index(s: &String) -> &str {
     let bytes = s.as_bytes();
-    
-    for(i, &item) in bytes.iter().enumerate() {
+
+    for (i, &item) in bytes.iter().enumerate() {
         if item == b' ' {
             return &s[0..i];
         }
@@ -52,7 +53,6 @@ fn boolean_to_string(b: bool) -> String {
     }
 }
 
-
 // Goal: Create fn that return avg
 fn find_average(slice: &[f64]) -> f64 {
     let mut sum = 0.0;
@@ -62,7 +62,7 @@ fn find_average(slice: &[f64]) -> f64 {
         sum = sum + i;
     }
 
-    sum/length
+    sum / length
 }
 
 // Goal: Create a function with two arguments that will return an array of the first n multiples of x.
@@ -98,9 +98,9 @@ fn fibonnaci(num: u32) -> u32 {
     let mut result: u32 = 0;
 
     // for _number in 2..num {
-        // result = first + second;
-        // first = second;
-        // second = result;
+    // result = first + second;
+    // first = second;
+    // second = result;
     // }
     let mut i = 0;
 
