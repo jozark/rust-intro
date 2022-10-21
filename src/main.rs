@@ -8,16 +8,16 @@ fn main() {
 }
 
 // Goal: find end index of the first word 
-fn first_word_index(s: &String) -> usize {
+fn first_word_index(s: &String) -> &str {
     let bytes = s.as_bytes();
     
     for(i, &item) in bytes.iter().enumerate() {
         if item == b' ' {
-            return i;
+            return &s[0..i];
         }
     }
 
-    s.len()
+    &s[..]
 }
 
 
