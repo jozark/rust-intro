@@ -7,6 +7,12 @@ struct Rectangle {
     height: u32,
 }
 
+impl Rectangle {
+    fn calc_area(&self) -> u32 {
+        self.width * self.height
+    }
+}
+
 fn main() {
     let scale = 2;
 	let rec = Rectangle {
@@ -14,16 +20,14 @@ fn main() {
 		height: 30,
 	};
 
-    let area = calc_area(&rec);
+    let area = rec.calc_area();
     println!("area is {}", area);
 	println!("{:#?}", rec); 
 	dbg!(&rec);    
 	// this only works because we attributed the debug trait
 }
 
-fn calc_area(r: &Rectangle) -> u32 {
-    r.width * r.height
-}
+
 
 
 
