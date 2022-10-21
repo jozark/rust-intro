@@ -1,12 +1,27 @@
 use rand::Rng;
-use std::{cmp::Ordering, io, vec};
+use std::{cmp::Ordering, io::{self, Read}, vec};
 
 fn main() {
-    let result = boolean_to_string(true);
-    println!("{}", result);
+    let s1 = String::from("hello world");
+    let word = first_word_index(&s1);
+    println!("{}", word);
 }
 
-//Goal: return string of boolean
+// Goal: find end index of the first word 
+fn first_word_index(s: &String) -> usize {
+    let bytes = s.as_bytes();
+    
+    for(i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return i;
+        }
+    }
+
+    s.len()
+}
+
+
+// Goal: return string of boolean
 fn boolean_to_string(b: bool) -> String {
     match b {
         true => String::from("true"),
@@ -21,7 +36,7 @@ fn find_average(slice: &[f64]) -> f64 {
     let length = slice.len() as f64;
 
     for i in slice.iter() {
-        sum += i;
+        sum = sum + i;
     }
 
     sum/length
