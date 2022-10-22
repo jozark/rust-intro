@@ -5,6 +5,8 @@ use std::{
     vec,
 };
 
+pub mod garden;
+
 #[derive(Debug)]
 struct Rectangle {
     width: u32,
@@ -22,14 +24,7 @@ impl Rectangle {
 }
 
 fn main() {
-    let scale = 2;
-    let mut rec = Rectangle {
-        width: scale * 30,
-        height: 30,
-    };
-    println!("before {}", rec.width);
-    rec.double_width();
-    println!("after {}", rec.width);
+    crate::garden::front_of_house::hosting::add_to_waitlist();
 }
 
 // Goal: find end index of the first word
