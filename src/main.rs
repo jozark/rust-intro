@@ -4,6 +4,7 @@ use std::{
     io::{self, Read},
     vec,
 };
+use std::collections::HashMap;
 
 pub mod garden;
 
@@ -24,7 +25,32 @@ impl Rectangle {
 }
 
 fn main() {
-    crate::garden::front_of_house::hosting::add_to_waitlist();
+    let mut grades: HashMap<String, u8> = HashMap::new();
+
+    grades.insert(String::from("math"), 5);
+    grades.insert(String::from("german"), 3);
+
+    let german = String::from("german");
+    let german_grade = grades.get(&german).copied().unwrap_or(0);
+
+    println!("german grade: {}", german_grade);
+
+    let other_method = match grades.get(&german) {
+        Some(&num) => num,
+        None => 0
+    };
+
+    println!("with other: {}", other_method);
+
+    grades.remove(&german);
+
+    let after_remove = grades.get(&german).copied().unwrap_or(0);
+
+    println!("After remove {}", after_remove);
+
+
+
+
 }
 
 // Goal: find end index of the first word
