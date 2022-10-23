@@ -1,10 +1,10 @@
 use rand::Rng;
+use std::collections::HashMap;
 use std::{
     cmp::Ordering,
     io::{self, Read},
     vec,
 };
-use std::collections::HashMap;
 
 pub mod garden;
 
@@ -24,33 +24,53 @@ impl Rectangle {
     }
 }
 
+// Convert strings to pig latin. The first consonant of each word is moved to the end of the word and “ay” is added, so “first” becomes “irst-fay.” Words that start with a vowel have “hay” added to the end instead (“apple” becomes “apple-hay”). Keep in mind the details about UTF-8 encoding!
+
+// Using a hash map and vectors, create a text interface to allow a user to add employee names to a department in a company. For example, “Add Sally to Engineering” or “Add Amir to Sales.” Then let the user retrieve a list of all people in a department or all people in the company by department, sorted alphabetically.
+
 fn main() {
-    let mut grades: HashMap<String, u8> = HashMap::new();
+    let mut int_vector = [1, 232, 4, 2, 4, 1, 1, 32, 456, 23, 22, 78];
+    println!("AVG: {}", find_average(&int_vector));
+    println!("MED: {}", find_median(&mut int_vector));
+    println!("MODE: {}", find_mode(&int_vector));
+}
 
-    grades.insert(String::from("math"), 5);
-    grades.insert(String::from("german"), 3);
+fn find_mode(slice: &[i32]) -> i32 {
+    let mut hash: HashMap<i32, i32> = HashMap::new();
+    for i in slice.iter() {
+        let count = hash.entry(*i).or_insert(0);
+        *count += 1;
+    }
 
-    let german = String::from("german");
-    let german_grade = grades.get(&german).copied().unwrap_or(0);
+    let test = hash.iter().max_by(|a, b| a.1.cmp(&b.1)).map(|(k, _v)| k);
 
-    println!("german grade: {}", german_grade);
+    match test {
+        Some(i) => *i,
+        None => 0,
+    }
+}
 
-    let other_method = match grades.get(&german) {
-        Some(&num) => num,
-        None => 0
-    };
+fn find_average(slice: &[i32]) -> f32 {
+    let mut sum = 0.0;
+    let length = slice.len() as f32;
+    for i in slice.iter() {
+        sum = sum + *i as f32;
+    }
+    sum / length
+}
 
-    println!("with other: {}", other_method);
+fn find_median(slice: &mut [i32]) -> f32 {
+    slice.sort();
+    let lenght = slice.len();
 
-    grades.remove(&german);
-
-    let after_remove = grades.get(&german).copied().unwrap_or(0);
-
-    println!("After remove {}", after_remove);
-
-
-
-
+    match lenght % 2 {
+        0 => {
+            let left_middle = slice[(lenght / 2) - 1];
+            let right_middle = slice[(lenght / 2)];
+            (left_middle + right_middle) as f32 / 2.0
+        }
+        _ => slice[lenght / 2] as f32,
+    }
 }
 
 // Goal: find end index of the first word
@@ -72,18 +92,6 @@ fn boolean_to_string(b: bool) -> String {
         true => String::from("true"),
         false => String::from("false"),
     }
-}
-
-// Goal: Create fn that return avg
-fn find_average(slice: &[f64]) -> f64 {
-    let mut sum = 0.0;
-    let length = slice.len() as f64;
-
-    for i in slice.iter() {
-        sum = sum + i;
-    }
-
-    sum / length
 }
 
 // Goal: Create a function with two arguments that will return an array of the first n multiples of x.
